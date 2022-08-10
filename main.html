@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <script type="text/javascript" src="main.js"></script>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div id="base">
+      <div id="header">
+        <div id="heading">Docker Container Management</div>
+      </div>
+      <div id="backBlock">
+        <div id="formArea" class="ioBox">
+          <form id="createContainer">
+            <div>Create Container</div>
+            <div>Name: <input /></div>
+            <div>
+              Image:
+              <select name="cimage" id="">
+                <option value="centos">CentOs</option>
+                <option value="ubuntu">Ubuntu</option>
+                <option value="amazonlinux">Amazonlinux</option>
+                <option value="archlinux">Archlinux</option>
+                <option value="oraclelinux">Oraclelinux</option>
+              </select>
+            </div>
+            <button id="createContainerButton">Create</button>
+          </form>
+          <form id="listContainer">
+            <div>List All Container</div>
+            <button id="listContainerButton">Create</button>
+          </form>
+          <form id="deleteContainer">
+            <div>Delete Container</div>
+            <div>Name: <input /></div>
+            <button id="deletecontainerContainerButton">Create</button>
+          </form>
+        </form>
+        <form id="createImage">
+          <div>Create Image using Dockerfile</div>
+          <div>Name of Image: <input /></div>
+          <div> DockerFile Content:</div>
+          <textarea></textarea><br>
+          <button id="createImageButton">Create</button>
+        </form>
+        </div>
+        <div id="outputBox" class="ioBox"></div>
+      </div>
+    </div>
+  </body>
+</html>
