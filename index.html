@@ -1,25 +1,97 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Docker CLI</title>
+    <script type="text/javascript" src="main.js"></script>
+<!--     <link rel="stylesheet" href="main.css" /> -->
+    <style>
+    #base{
+  background-color: #fec0cb;
+  padding: 8px 8px 8px 8px;
+  height: 100%;
+  width: 100%;
+}
+#header{
+  background-color: palevioletred;
+  display: inline-block;
+  margin-bottom: 5px;
+  height: 10%;
+  width: 100%;
+  position: relative;
+  border-radius: 5px 5px;
+  box-shadow: 7px 7px 12px grey ;
+  }
+#heading{
+  margin-top: 2px;
+  padding-top:5px;
+  padding-left:5px;
+  color:white;
+  font-family: "Garamond";
+  font-size: 400%;
+  text-align: center;
+}
+#backBlock{
+  display:flex;
+  flex-wrap: no-wrap;
+  margin-top: 5px;
+  height: 88%;
+  width: 100%;
+  position: relative;
+}
+.ioBox{
+  width: 50%;
+  height: auto;
+  float: left;
+  margin: 5px 5px 5px 5px;
+}
+#outputBox{
+  overflow-y: scroll !important;
+  background-color: white;
+  display: block;
+  border-radius: .8%;
+}
+    </style>
   </head>
   <body>
-    <h3>Launch Container</h3>
-
-    <form action="/run" method="get">
-      Name : <input type="text" name="cname" id="" /> <br /><br />
-      Image Name :
-      <select name="cimage" id="">
-        <option value="centos">CentOs</option>
-        <option value="ubuntu">Ubuntu</option>
-        <option value="amazonlinux">Amazonlinux</option>
-        <option value="archlinux">Archlinux</option>
-        <option value="oraclelinux">Oraclelinux</option>
-      </select>
-      <input type="submit" name="" id="" />
-    </form>
+    <div id="base">
+      <div id="header">
+        <div id="heading">Docker Container Management</div>
+      </div>
+      <div id="backBlock">
+        <div id="formArea" class="ioBox">
+          <form id="createContainer" action="/run">
+            <div>Create Container</div>
+            <div>Name: <input name="cname" /></div>
+            <div>
+              Image:
+              <select name="cimage" id="">
+                <option value="centos">CentOs</option>
+                <option value="ubuntu">Ubuntu</option>
+                <option value="amazonlinux">Amazonlinux</option>
+                <option value="archlinux">Archlinux</option>
+                <option value="oraclelinux">Oraclelinux</option>
+              </select>
+            </div>
+            <button id="createContainerButton">Create</button>
+          </form>
+          <form id="listContainer" action="/listcontainer">
+            <div>List All Container</div>
+            <button id="listContainerButton">Create</button>
+          </form>
+          <form id="deleteContainer" action="/deletecontainer">
+            <div>Delete Container</div>
+            <div>Name: <input name="dname" /></div>
+            <button id="deletecontainerContainerButton">Create</button>
+          </form>
+        </form>
+        <form id="createImage">
+          <div>Create Image using Dockerfile</div>
+          <div>Name of Image: <input /></div>
+          <div> DockerFile Content:</div>
+          <textarea></textarea><br>
+          <button id="createImageButton">Create</button>
+        </form>
+        </div>
+        <div id="outputBox" class="ioBox"></div>
+      </div>
+    </div>
   </body>
 </html>
