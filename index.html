@@ -1,7 +1,14 @@
 <html>
   <head>
-    <script type="text/javascript" src="main.js"></script>
-<!--     <link rel="stylesheet" href="main.css" /> -->
+    <script>
+      function listContainer(){
+        const myHTTP= new XMLHttpRequest();
+        const url="http://localhost:3000/listcontainer";
+        myHTTP.open("GET",url, false);
+        myHTTP.send();
+        document.getElementById("outputBox").innerHTML=myHTTP.responseText;
+        }
+    </script>  
     <style>
     #base{
   background-color: #fec0cb;
@@ -72,10 +79,10 @@
             </div>
             <button id="createContainerButton">Create</button>
           </form>
-          <form id="listContainer" action="/listcontainer">
+          
             <div>List All Container</div>
-            <button id="listContainerButton">Create</button>
-          </form>
+            <button id="listContainerButton onclick="listContainer()">List</button>
+          
           <form id="deleteContainer" action="/deletecontainer">
             <div>Delete Container</div>
             <div>Name: <input name="dname" /></div>
