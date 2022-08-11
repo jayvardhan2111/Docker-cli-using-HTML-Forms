@@ -55,16 +55,4 @@ app.get('/deletecontainer',(req,res)=>{
 
 })
 
-
-app.get('/ps',(req,res) => {
-
-        
-        exec("docker ps ",(err,stdout,stderr) => {
-                res.send("<pre>"+stdout+"</pre>")
-        
-        })
-})
-
-
-
 app.listen(3000,()=>{console.log('web app is running')})
