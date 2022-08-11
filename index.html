@@ -34,6 +34,22 @@
         document.getElementById("outputBox").innerHTML=myHTTP.responseText;
 
       }
+      
+      function deleteContainer() {
+        const myHTTP = new XMLHttpRequest();
+        const containerName = document.getElementById(
+          "deleteConatainerName"
+        ).value;
+        console.log(containerName);
+        const url =
+          "http://localhost:3000/deletecontainer?dname=" + containerName;
+        console.log(url);
+
+        myHTTP.open("GET", url, false);
+        myHTTP.send();
+        console.log(myHTTP.responseText);
+        document.getElementById("outputBox").innerHTML = myHTTP.responseText;
+      }
     </script>  
     <style>
     #base{
@@ -111,12 +127,13 @@
             <button id="listContainerButton" onclick="listContainer()">Create</button>
            </div>
           
-          <form id="deleteContainer" action="/deletecontainer">
+          <div id="deleteContainerSection">
             <div>Delete Container</div>
-            <div>Name: <input name="dname" /></div>
-            <button id="deletecontainerContainerButton">Create</button>
-          </form>
-        </form>
+            <div>Name: <input name="dname" id="deleteConatainerName" /></div>
+            <button id="deleteContainerButton" onclick="deleteContainer()">
+              Create
+            </button>
+          </div>
                                                        
         <div id="createDockerImageSection">
           <div>Create Image using Dockerfile</div>
