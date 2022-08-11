@@ -10,12 +10,7 @@ app.get('/',(req,res) => {
 
 
 app.get('/run',(req,res)=>{
-
-    // res.send(__dirname+"/demo.html")
-
-    // exec(req.query.cname,(err,stdout,stderr)=>{
-    //     res.send("<pre>"+stdout+"</pre>")
-    // })
+	
     const cname = req.query.cname
     const cimage = req.query.cimage
     q = "docker run -itd --name "+cname+" "+cimage
@@ -29,7 +24,6 @@ app.get('/run',(req,res)=>{
 
 app.get('/listcontainer',(req,res)=>{
 
-    
     q = "docker ps"
     exec(q,(err,stdout,stderr)=>{
         console.log(err)
@@ -38,6 +32,15 @@ app.get('/listcontainer',(req,res)=>{
     })
 
 })
+
+app.get("/listimages", (req, res) => {
+  q = "docker images";
+  exec(q, (err, stdout, stderr) => {
+    console.log(err);
+    console.log(stderr);
+    res.send("<pre>" + stdout + "</pre>");
+  });
+});
 
 
 app.get('/deletecontainer',(req,res)=>{
