@@ -34,6 +34,42 @@
         document.getElementById("outputBox").innerHTML=myHTTP.responseText;
 
       }
+      
+      function createContainer() {
+        const myHTTP = new XMLHttpRequest();
+        const containerName = document.getElementById("cname").value;
+        console.log(containerName);
+        const containerImage = document.getElementById("cimage").value;
+        console.log(containerImage);
+        const url =
+          "http://localhost:3000/run?cname=" +
+          containerName +
+          "&cimage=" +
+          containerImage;
+        console.log(url);
+
+        myHTTP.open("GET", url, false);
+        myHTTP.send();
+        console.log(myHTTP.responseText);
+        document.getElementById("outputBox").innerHTML = myHTTP.responseText;
+      }
+
+      function deleteContainer() {
+        const myHTTP = new XMLHttpRequest();
+        const containerName = document.getElementById(
+          "deleteConatainerName"
+        ).value;
+        console.log(containerName);
+        const url =
+          "http://localhost:3000/deletecontainer?dname=" + containerName;
+        console.log(url);
+
+        myHTTP.open("GET", url, false);
+        myHTTP.send();
+        console.log(myHTTP.responseText);
+        document.getElementById("outputBox").innerHTML = myHTTP.responseText;
+      }
+      
     </script>  
     <style>
     #base{
@@ -90,12 +126,12 @@
       </div>
       <div id="backBlock">
         <div id="formArea" class="ioBox">
-          <form id="createContainer" action="/run">
+           <div id="createContainerSection">
             <div>Create Container</div>
-            <div>Name: <input name="cname" /></div>
+            <div>Name: <input name="cname" id="cname" /></div>
             <div>
               Image:
-              <select name="cimage" id="">
+              <select name="cimage" id="cimage">
                 <option value="centos">CentOs</option>
                 <option value="ubuntu">Ubuntu</option>
                 <option value="amazonlinux">Amazonlinux</option>
@@ -103,8 +139,10 @@
                 <option value="oraclelinux">Oraclelinux</option>
               </select>
             </div>
-            <button id="createContainerButton">Create</button>
-          </form>
+            <button id="createContainerButton" onclick="createContainer()">
+              Create
+            </button>
+          </div>
           
            <div id="listContainerSection">
             <div>List All Container</div>
