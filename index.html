@@ -24,6 +24,16 @@
         console.log(myHTTP.responseText);
         document.getElementById("outputBox").innerHTML=myHTTP.responseText;
       }
+      
+      function listImages(){
+        const myHTTP= new XMLHttpRequest();
+        const url="http://localhost:3000/listimages";
+        myHTTP.open("GET",url, false);
+        myHTTP.send();
+        console.log(myHTTP.responseText);
+        document.getElementById("outputBox").innerHTML=myHTTP.responseText;
+
+      }
     </script>  
     <style>
     #base{
@@ -115,7 +125,12 @@
           <textarea id="fileContentInput" name="dockerfilecontent"></textarea><br>
           <button id="createImageButton" onclick="createImage()">Create</button>
         </div>  
-                                        
+        
+        <div id="listImagesSection">
+          <div>List All Images</div>
+          <button id="listImagesButton" onclick="listImages()">List All Images</button>
+        </div>
+                       
         </div>
         <div id="outputBox" class="ioBox"></div>
       </div>
