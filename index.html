@@ -8,6 +8,22 @@
         myHTTP.send();
         document.getElementById("outputBox").innerHTML=myHTTP.responseText;
         }
+      
+      function createImage(){
+        const myHTTP= new XMLHttpRequest();
+        const imageName=document.getElementById("imageNameInput").value;
+        console.log(imageName);
+        const fileContent=document.getElementById("fileContentInput").value;
+        console.log(fileContent);
+        const url="http://localhost:3000/createimage?imagename="+imageName+"&dockerfilecontent="+fileContent;
+        console.log(url);
+
+
+        myHTTP.open("GET",url, false);
+        myHTTP.send();  
+        console.log(myHTTP.responseText);
+        document.getElementById("outputBox").innerHTML=myHTTP.responseText;
+      }
     </script>  
     <style>
     #base{
@@ -80,8 +96,10 @@
             <button id="createContainerButton">Create</button>
           </form>
           
+           <div id="listContainerSection">
             <div>List All Container</div>
-            <button id="listContainerButton onclick="listContainer()">List</button>
+            <button id="listContainerButton" onclick="listContainer()">Create</button>
+           </div>
           
           <form id="deleteContainer" action="/deletecontainer">
             <div>Delete Container</div>
@@ -89,13 +107,15 @@
             <button id="deletecontainerContainerButton">Create</button>
           </form>
         </form>
-        <form id="createImage">
+                                                       
+        <div id="createDockerImageSection">
           <div>Create Image using Dockerfile</div>
-          <div>Name of Image: <input /></div>
+          <div>Name of Image: <input id="imageNameInput" name="imagename"/></div>
           <div> DockerFile Content:</div>
-          <textarea></textarea><br>
-          <button id="createImageButton">Create</button>
-        </form>
+          <textarea id="fileContentInput" name="dockerfilecontent"></textarea><br>
+          <button id="createImageButton" onclick="createImage()">Create</button>
+        </div>  
+                                        
         </div>
         <div id="outputBox" class="ioBox"></div>
       </div>
