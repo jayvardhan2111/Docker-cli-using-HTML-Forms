@@ -70,6 +70,18 @@
         document.getElementById("outputBox").innerHTML = myHTTP.responseText;
       }
       
+      function deleteImage() {
+        const myHTTP = new XMLHttpRequest();
+        const imageName = document.getElementById("deleteImageName").value;
+        console.log(imageName);
+        const url = "http://localhost:3000/deleteimage?iname=" + imageName;
+        console.log(url);
+
+        myHTTP.open("GET", url, false);
+        myHTTP.send();
+        console.log(myHTTP.responseText);
+        document.getElementById("outputBox").innerHTML = myHTTP.responseText;
+      }
     </script>  
     <style>
     #base{
@@ -167,6 +179,14 @@
         <div id="listImagesSection">
           <div>List All Images</div>
           <button id="listImagesButton" onclick="listImages()">List All Images</button>
+        </div>
+        
+        <div id="deleteImageSection">
+          <div>Delete Image</div>
+          <div>Name: <input name="iname" id="deleteImageName" /></div>
+          <button id="deleteImageButton" onclick="deleteImage()">
+            Delete
+          </button>
         </div>
                        
         </div>
