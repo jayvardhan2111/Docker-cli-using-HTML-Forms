@@ -69,6 +69,7 @@
         console.log(myHTTP.responseText);
         document.getElementById("outputBox").innerHTML = myHTTP.responseText;
       }
+
       
       function deleteImage() {
         const myHTTP = new XMLHttpRequest();
@@ -82,6 +83,7 @@
         console.log(myHTTP.responseText);
         document.getElementById("outputBox").innerHTML = myHTTP.responseText;
       }
+
     </script>  
     <style>
     #base{
@@ -161,12 +163,17 @@
             <button id="listContainerButton" onclick="listContainer()">List</button>
            </div>
           
-          <form id="deleteContainer" action="/deletecontainer">
+          <div id="deleteContainerSection">
             <div>Delete Container</div>
-            <div>Name: <input name="dname" /></div>
-            <button id="deletecontainerContainerButton">Delete</button>
-          </form>
-        </form>
+
+            <div>Name: <input name="dname" id="deleteConatainerName" /></div>
+            <button id="deleteContainerButton" onclick="deleteContainer()">
+              Create
+            </button>
+          </div>
+
+          
+
                                                        
         <div id="createDockerImageSection">
           <div>Create Image using Dockerfile</div>
