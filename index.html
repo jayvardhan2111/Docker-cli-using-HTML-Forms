@@ -9,20 +9,19 @@
         document.getElementById("outputBox").innerHTML=myHTTP.responseText;
         }
       
-      function createImage(){
-        const myHTTP= new XMLHttpRequest();
-        const imageName=document.getElementById("imageNameInput").value;
-        console.log(imageName);
-        const fileContent=document.getElementById("fileContentInput").value;
-        console.log(fileContent);
-        const url="http://localhost:3000/createimage?imagename="+imageName+"&dockerfilecontent="+fileContent;
-        console.log(url);
-
-
-        myHTTP.open("GET",url, false);
-        myHTTP.send();  
-        console.log(myHTTP.responseText);
-        document.getElementById("outputBox").innerHTML=myHTTP.responseText;
+      function createImage() {
+        const myHTTP = new XMLHttpRequest();
+        const imageName = document.getElementById("imageNameInput").value;
+        const fileContent = document.getElementById("fileContentInput").value;
+        listOfDockerfileLines = fileContent.split("\n");
+        const url =
+          "http://localhost:3000/createimage?imagename=" +
+          imageName +
+          "&dockerfilecontent=" +
+          listOfDockerfileLines;
+        myHTTP.open("GET", url, false);
+        myHTTP.send();
+        document.getElementById("outputBox").innerHTML = myHTTP.responseText;
       }
       
       function listImages(){
