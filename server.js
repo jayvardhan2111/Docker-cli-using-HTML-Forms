@@ -67,32 +67,50 @@ app.get('/deleteimage',(req,res)=>{
 
 })
 
-app.get("/createimage", async (req, res) => {
-  var imageName = req.query.imagename;
-  var fileContent = req.query.dockerfilecontent;
-  console.log("imageName");
-  console.log(imageName);
-  console.log("fileContent");
-  console.log(fileContent);
-
-  q = 'echo "' + fileContent + '" >Dockerfile';
-  console.log(q);
-  await exec(q, (err, stdout, stderr) => {
+function emptyExistingDockerFile() {
+  command = ": > Dockerfile";
+  exec(command, (err, stdout, stderr) => {
     console.log(err);
     console.log(stderr);
   });
-  console.log("file is created");
-  q2 = "docker build -t " + imageName + " .";
-  await exec(q2, (err, stdout, stderr) => {
+}
+
+function createDockerFile(fileContent) {
+  dockerfileLines = fileContent.split(",");
+  dockerfileLines.forEach(async (line) => {
+    writeInFileCommand = 'echo "' + line + '" >>Dockerfile';
+    console.log(writeInFileCommand);
+    await exec(writeInFileCommand, (err, stdout, stderr) => {
+      console.log(err);
+      console.log(stderr);
+    });
+  });
+}
+
+async function buildDockerImage(imageName, res) {
+  buildImageCommand = "docker build -t " + imageName + " .";
+  await exec(buildImageCommand, (err, stdout, stderr) => {
     console.log(err);
     console.log(stderr);
-    q3 = "docker images | grep " + imageName;
-    exec(q3, (err, stdout, stderr) => {
+    listDockerImageCommand = "docker images | grep " + imageName;
+    exec(listDockerImageCommand, (err, stdout, stderr) => {
       console.log(err);
       console.log(stderr);
       res.send("<pre>" + stdout + "</pre>");
     });
   });
+}
+
+app.get("/createimage", (req, res) => {
+  var imageName = req.query.imagename;
+  var fileContent = req.query.dockerfilecontent;
+  console.log("imageName");
+  console.log(imageName);
+  console.log("fileContent");
+  emptyExistingDockerFile();
+  createDockerFile(fileContent);
+  console.log("file is created");
+  buildDockerImage(imageName, res);
 });
 
 app.get('/deletecontainer',(req,res)=>{
