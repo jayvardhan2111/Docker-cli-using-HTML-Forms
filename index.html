@@ -1,444 +1,127 @@
 <html>
   <head>
-    <script>
-      function listContainer(){
-        const myHTTP= new XMLHttpRequest();
-        const url="http://localhost:3000/listcontainer";
-        myHTTP.open("GET",url, false);
-        myHTTP.send();
-        document.getElementById("outputBox").innerHTML=myHTTP.responseText;
-        }
-      
-      function createImage() {
-        const myHTTP = new XMLHttpRequest();
-        const imageName = document.getElementById("imageNameInput").value;
-        const fileContent = document.getElementById("fileContentInput").value;
-        if (imageName == "") {
-          alert("Image Name Can't Be Null");
-          return;
-        }
-        if (fileContent == "") {
-          alert("File Content Can't Be Null");
-          return;
-        }
-        listOfDockerfileLines = fileContent.split("\n");
-        const url =
-          "http://localhost:3000/createimage?imagename=" +
-          imageName +
-          "&dockerfilecontent=" +
-          listOfDockerfileLines;
-        myHTTP.open("GET", url, false);
-        myHTTP.send();
-        document.getElementById("outputBox").innerHTML = myHTTP.responseText;
-      }
-      
-      function listImages(){
-        const myHTTP= new XMLHttpRequest();
-        const url="http://localhost:3000/listimages";
-        myHTTP.open("GET",url, false);
-        myHTTP.send();
-        console.log(myHTTP.responseText);
-        document.getElementById("outputBox").innerHTML=myHTTP.responseText;
-
-      }
-      
-      function createContainer() {
-        const myHTTP = new XMLHttpRequest();
-        const containerName = document.getElementById("cname").value;
-        if (containerName == "") {
-          alert("Container Name Can't Be Null");
-          return;
-        }
-        console.log(containerName);
-        const containerImage = document.getElementById("cimage").value;
-        if (containerImage == "") {
-          alert("Container Image Name Can't Be Null");
-          return;
-        }
-        console.log(containerImage);
-        const url =
-          "http://localhost:3000/run?cname=" +
-          containerName +
-          "&cimage=" +
-          containerImage;
-        console.log(url);
-
-        myHTTP.open("GET", url, false);
-        myHTTP.send();
-        console.log(myHTTP.responseText);
-        document.getElementById("outputBox").innerHTML = myHTTP.responseText;
-      }
-
-      function deleteContainer() {
-        const myHTTP = new XMLHttpRequest();
-        const containerName = document.getElementById(
-          "deleteConatainerName"
-        ).value;
-        if (containerName == "") {
-          alert("Container Name Can't Be Null");
-          return;
-        }
-        console.log(containerName);
-        const url =
-          "http://localhost:3000/deletecontainer?dname=" + containerName;
-        console.log(url);
-
-        myHTTP.open("GET", url, false);
-        myHTTP.send();
-        console.log(myHTTP.responseText);
-        document.getElementById("outputBox").innerHTML = myHTTP.responseText;
-      }
-
-      
-      function deleteImage() {
-        const myHTTP = new XMLHttpRequest();
-        const imageName = document.getElementById("deleteImageName").value;
-        if (imageName == "") {
-          alert("Image Name Can't Be Null");
-          return;
-        }
-        console.log(imageName);
-        const url = "http://localhost:3000/deleteimage?iname=" + imageName;
-        console.log(url);
-
-        myHTTP.open("GET", url, false);
-        myHTTP.send();
-        console.log(myHTTP.responseText);
-        document.getElementById("outputBox").innerHTML = myHTTP.responseText;
-      }
-
-    </script>  
-    <style>
-    #base{
-   background: url("background.jpg");
-    background-size: 125%;
-    background-position: -400px 0px;
-  }
-  @font-face {
-    font-family: 'Arista'; /*a name to be used later*/
-    src: url('Arista-Pro-Alternate-Regular.ttf'); /*URL to font*/
-}
-  #header{
-    /*background-color: rgba(9, 79, 209, 0.2);*/
-
-    font-family: "Arista";
-    display: inline-block;
-    margin-bottom: 5px;
-    height: 10%;
-    width: 100%;
-    position: relative;
-    border-radius: 5px 5px;
-    }
-  #heading{
-    text-shadow: 4px 4px 10px #ffffff;
-    margin-top: 2px;
-    padding-top:5px;
-    padding-left:5px;
-    color: rgba(57,77,84,255);
-    font-family: "Arista";
-    font-size: 400%;
-    text-align: center;
-  }
-  h2{
-    text-shadow: 4px 4px 10px #ffffff;
-    font-family: "Arista";
-  }
-  #backBlock{
-    display:flex;
-    flex-wrap: no-wrap;
-    margin-top: 0px;
-    height: 88%;
-    width: 100%;
-    position: relative;
-  }
-  form#createContainer{
-    margin-top: -20px;
-     padding-top: 10px;
-          padding-left: 20px;
-          padding-right: 20px;
-          padding-bottom: 20px;
-    background-color: rgba(255, 255, 255, 0.5);
-    width: 70%;
-    font-size: 18px;
-    border-radius: 10px;
-    border: 1px soid rgba (255,255,255,0.3) ;
-    box-shadow:2px 2px 15px
-    rgba(0,0,0,0.3);
-    color:rgb(0, 0, 0);
-    }
-   
-    /* form#listContainer{
-      background-color: rgba(255, 255, 255, 0.5);
-      width: 70%;
-      font-size: 18px;
-      border-radius: 10px;
-      border: 1px soid rgba (255,255,255,0.3) ;
-      box-shadow:2px 2px 15px
-      rgba(0,0,0,0.3);
-      color:rgb(0, 0, 0); 
-      } */
-      form#deleteContainer{
-        margin-top: -25px;
-        padding-top: 10px;
-          padding-left: 20px;
-          padding-right: 20px;
-          padding-bottom: 20px;
-        background-color: rgba(255, 255, 255, 0.5);
-        width: 70%;
-        font-size: 18px;
-        border-radius: 10px;
-        border: 1px soid rgba (255,255,255,0.3) ;
-        box-shadow:2px 2px 15px
-        rgba(0,0,0,0.3);
-        color:rgb(0, 0, 0);
-        }
-        form#createImage{
-          padding-top: 10px;
-          padding-left: 20px;
-          padding-right: 20px;
-          padding-bottom: 20px;
-          background-color: rgba(255, 255, 255, 0.5);
-          width: 70%;
-          font-size: 18px;
-          border-radius: 10px;
-          border: 1px soid rgba (255,255,255,0.3) ;
-          box-shadow:2px 2px 15px
-          rgba(0,0,0,0.3);
-          color:rgb(0, 0, 0);
-          }
-          /*h2 {
-            background-color: rgb(255, 255, 255);
-            color: rgb(0, 0, 0);
-          }*/
-  .ioBox{
-    width: 50%;
-    height: 400px;
-    float: left;
-    margin: 5px 5px 5px 5px;
-  }
-  #outputBox{
-    overflow-y: scroll !important;
-    background-color: rgb(252, 249, 249, 0.5);
-    display: block;
-    border-radius: .8%;
-    border-radius: 5px 5px;
-    box-shadow: 0px 7px 12px rgb(21 20 20) ;
-    border: 2px solid rgba(39, 38, 38, 0.342);
-    margin-top: -22px
-    }
-    textarea {
-      width: 100%;
-      height: 150px;
-      padding: 12px 20px;
-      box-sizing: border-box;
-      border: 2px solid #ccc;
-      border-radius: 4px;
-      background-color: #f8f8f8;
-      font-size: 16px;
-      resize: none;
-      box-shadow:2px 2px 15px
-    }
-    #createContainerButton{
-      width: 200px;
-      padding: 7px;
-      font-size: 16px;
-      font-family: "Arista";
-      font-weight: 600;
-      display: inline-block;
-      border-radius: 3px;
-      cursor: pointer;
-      border: 1px solid
-      rgba(0, 0, 0, 0.705) ;
-      box-shadow: 1px 1px 5px
-      rgba (0,0,0,0.3);
-      margin-bottom: 20px;
-      transition-duration: 0.4s;
-    }
-    #createContainerButton:hover{
-      width: 200px;
-      padding: 7px;
-      font-size: 16px;
-      font-family: "Arista";
-      font-weight: 600;
-      border-radius: 3px;
-      display: inline-block;
-      background-color: rgba(57,77,84,255);
-      color: #fff;
-      cursor: pointer;
-      border: 1px solid
-      rgba(0, 0, 0, 0.705) ;
-      box-shadow: 1px 1px 5px
-      rgba (0,0,0,0.3);
-      margin-bottom: 20px;
-      }
-      #listContainerButton{
-        width: 60%;
-        padding: 10px;
-        font-size: 25px;
-        text-align:mach-parent;
-        display: inline-block;
-        font-family: "Arista";
-        font-weight: 500;
-        border-radius: 3px;
-        cursor: pointer;
-        border: 1px solid
-        rgba(0, 0, 0, 0.705) ;
-        box-shadow: 1px 1px 5px
-        rgba (0,0,0,0.3);
-        margin-bottom: 20px;
-        transition-duration: 0.4s;
-      }
-      #listContainerButton:hover{
-        width: 60%;
-        padding: 10px;
-        font-size: 25px;
-        text-align:mach-parent;
-        display: inline-block;
-        font-family: "Arista";
-        font-weight: 500;
-        border-radius: 3px;
-        background-color: rgba(57,77,84,255);
-        color: #fff;
-        cursor: pointer;
-        border: 1px solid
-        rgba(0, 0, 0, 0.705) ;
-        box-shadow: 1px 1px 5px
-        rgba (0,0,0,0.3);
-        margin-bottom: 20px;
-        }
-        #deletecontainerContainerButton{
-          padding: 3px 4px;
-          font-size: 15px;
-          display: inline-block;
-          font-family: "Arista";
-          font-weight: 500;
-          border-radius: 3px;
-          cursor: pointer;
-          border: 1px solid
-          rgba(0, 0, 0, 0.705) ;
-          box-shadow: 1px 1px 5px
-          rgba (0,0,0,0.3);
-          margin-bottom: 20px;
-          transition-duration: 0.4s;
-        }
-
-        #deletecontainerContainerButton:hover{
-        padding: 3px 4px;
-        font-size: 15px;
-        display: inline-block;
-        font-family: "Arista";
-        font-weight: 500;
-        border-radius: 3px;
-        background-color: rgba(57,77,84,255);
-        color: #fff;
-        cursor: pointer;
-        border: 1px solid
-        rgba(255, 255, 255, 0.705) ;
-        box-shadow: 1px 1px 5px
-        rgba (0,0,0,0.3);
-        margin-bottom: 20px;
-        }
-        #createImageButton{
-          width: 200px;
-      padding: 7px;
-      font-size: 20px;
-      font-family: "Arista";
-      font-weight: 600;
-      display: inline-block;
-      border-radius: 3px;
-      cursor: pointer;
-      border: 1px solid
-      rgba(0, 0, 0, 0.705) ;
-      box-shadow: 1px 1px 5px
-      rgba (0,0,0,0.3);
-      margin-bottom: 20px;
-          transition-duration: 0.4s;
-        }
-        
-        #createImageButton:hover{
-          width: 200px;
-      padding: 7px;
-      font-size: 20px;
-      font-family: "Arista";
-      font-weight: 600;
-      border-radius: 3px;
-      display: inline-block;
-      background-color: rgba(57,77,84,255);
-      color: #fff;
-      cursor: pointer;
-      rgba(0, 0, 0, 0.705) ;
-      box-shadow: 1px 1px 5px
-      rgba (0,0,0,0.3);
-      margin-bottom: 20px;
-          background-color: rgba(57,77,84,255); /* Green */
-          border: 2px solid rgba(57,77,84,255);
-          color: white;
-        }
-    </style>
+    <link type="text/css" rel="stylesheet" href="index.css" />
+    <script type="text/javascript" src="index.js"></script>
   </head>
   <body>
     <div id="base">
       <div id="header">
-        <div id="heading">Docker Container Management</div>
+        <div id="heading"><b>Docker Container Management</b></div>
       </div>
       <div id="backBlock">
         <div id="formArea" class="ioBox">
-           <div id="createContainerSection">
-            <div>Create Container</div>
-            <div>Name: <input name="cname" id="cname" /></div>
-            <div>
-              Image:
-              <select name="cimage" id="cimage">
-                <option value="centos">CentOs</option>
-                <option value="ubuntu">Ubuntu</option>
-                <option value="amazonlinux">Amazonlinux</option>
-                <option value="archlinux">Archlinux</option>
-                <option value="oraclelinux">Oraclelinux</option>
-              </select>
+          <div id="optionButtons">
+            <div id="containerButton" onclick="displayContainer()">
+              CONTAINER
             </div>
-            <button id="createContainerButton" onclick="createContainer()">
-              Create
-            </button>
+            <div id="imageButton" onclick="displayImage()">IMage</div>
           </div>
-          
-           <div id="listContainerSection">
-            <div>List All Container</div>
-            <button id="listContainerButton" onclick="listContainer()">List</button>
-           </div>
-          
-          <div id="deleteContainerSection">
-            <div>Delete Container</div>
-
-            <div>Name: <input name="dname" id="deleteConatainerName" /></div>
-            <button id="deleteContainerButton" onclick="deleteContainer()">
-              Create
-            </button>
+          <div id="selectedForms">
+            <form
+              id="createContainer"
+              class="container"
+              onsubmit="return false"
+            >
+              <div><h2>Create Container:</h2></div>
+              <div>
+                Name:
+                <input
+                  type="text"
+                  name=" cname"
+                  id="cname"
+                  placeholder="Enter Container Name"
+                />
+              </div>
+              <div>
+                Image:
+                <select name="cimage" id="cimage">
+                  <option value="centos">CentOs</option>
+                  <option value="ubuntu">Ubuntu</option>
+                  <option value="amazonlinux">Amazonlinux</option>
+                  <option value="archlinux">Archlinux</option>
+                  <option value="oraclelinux">Oraclelinux</option>
+                </select>
+              </div>
+              <button
+                type="submit"
+                id="createContainerButton"
+                onclick="createContainer()"
+              >
+                Create
+              </button>
+            </form>
+            <form id="listContainer" class="container" onsubmit="return false">
+              <div><h2>Delete Container:</h2></div>
+              <button
+                type="submit"
+                id="listContainerButton"
+                onclick="listContainer()"
+              >
+                List All Container
+              </button>
+            </form>
+            <form
+              id="deleteContainer"
+              class="container"
+              onsubmit="return false"
+            >
+              <div><h2>Delete Container:</h2></div>
+              <div>
+                Name:
+                <input
+                  type="text"
+                  name="dname"
+                  id="deleteConatainerName"
+                  placeholder="Enter Container Name"
+                />
+                <button
+                  type="submit"
+                  id="deleteContainerButton"
+                  onclick="deleteContainer()"
+                >
+                  Delete
+                </button>
+              </div>
+            </form>
+            <form id="createImage" class="image" onsubmit="return false">
+              <div><h2>Create Image Using Docker File</h2></div>
+              <div>
+                Name of Image:
+                <input type="text" id="imageNameInput" name="imagename" />
+              </div>
+              <div>DockerFile Content:</div>
+              <textarea
+                placeholder="Enter Docker File Commands..."
+                id="fileContentInput"
+                name="dockerfilecontent"
+              >
+              </textarea
+              ><br />
+              <button
+                type="submit"
+                id="createImageButton"
+                onclick="createImage()"
+              >
+                Create
+              </button>
+            </form>
+            <form id="listImage" class="image" onsubmit="return false">
+              <button type="submit" id="listImage" onclick="listImages()">
+                List All Container
+              </button>
+            </form>
+            <form id="deleteImage" class="image" onsubmit="return false">
+              <div>Delete Image</div>
+              <div>Name: <input name="iname" id="deleteImageName" /></div>
+              <button
+                type="submit"
+                id="deleteImageButton"
+                onclick="deleteImage()"
+              >
+                Delete
+              </button>
+            </form>
           </div>
-
-          
-
-                                                       
-        <div id="createDockerImageSection">
-          <div>Create Image using Dockerfile</div>
-          <div>Name of Image: <input id="imageNameInput" name="imagename"/></div>
-          <div> DockerFile Content:</div>
-          <textarea id="fileContentInput" name="dockerfilecontent"></textarea><br>
-          <button id="createImageButton" onclick="createImage()">Create</button>
-        </div>  
-        
-        <div id="listImagesSection">
-          <div>List All Images</div>
-          <button id="listImagesButton" onclick="listImages()">List All Images</button>
-        </div>
-        
-        <div id="deleteImageSection">
-          <div>Delete Image</div>
-          <div>Name: <input name="iname" id="deleteImageName" /></div>
-          <button id="deleteImageButton" onclick="deleteImage()">
-            Delete
-          </button>
-        </div>
-                       
         </div>
         <div id="outputBox" class="ioBox"></div>
       </div>
