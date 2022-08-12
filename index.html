@@ -13,6 +13,14 @@
         const myHTTP = new XMLHttpRequest();
         const imageName = document.getElementById("imageNameInput").value;
         const fileContent = document.getElementById("fileContentInput").value;
+        if (imageName == "") {
+          alert("Image Name Can't Be Null");
+          return;
+        }
+        if (fileContent == "") {
+          alert("File Content Can't Be Null");
+          return;
+        }
         listOfDockerfileLines = fileContent.split("\n");
         const url =
           "http://localhost:3000/createimage?imagename=" +
@@ -37,8 +45,16 @@
       function createContainer() {
         const myHTTP = new XMLHttpRequest();
         const containerName = document.getElementById("cname").value;
+        if (containerName == "") {
+          alert("Container Name Can't Be Null");
+          return;
+        }
         console.log(containerName);
         const containerImage = document.getElementById("cimage").value;
+        if (containerImage == "") {
+          alert("Container Image Name Can't Be Null");
+          return;
+        }
         console.log(containerImage);
         const url =
           "http://localhost:3000/run?cname=" +
@@ -58,6 +74,10 @@
         const containerName = document.getElementById(
           "deleteConatainerName"
         ).value;
+        if (containerName == "") {
+          alert("Container Name Can't Be Null");
+          return;
+        }
         console.log(containerName);
         const url =
           "http://localhost:3000/deletecontainer?dname=" + containerName;
@@ -73,6 +93,10 @@
       function deleteImage() {
         const myHTTP = new XMLHttpRequest();
         const imageName = document.getElementById("deleteImageName").value;
+        if (imageName == "") {
+          alert("Image Name Can't Be Null");
+          return;
+        }
         console.log(imageName);
         const url = "http://localhost:3000/deleteimage?iname=" + imageName;
         console.log(url);
