@@ -35,6 +35,25 @@
 
       }
       
+      function createContainer() {
+        const myHTTP = new XMLHttpRequest();
+        const containerName = document.getElementById("cname").value;
+        console.log(containerName);
+        const containerImage = document.getElementById("cimage").value;
+        console.log(containerImage);
+        const url =
+          "http://localhost:3000/run?cname=" +
+          containerName +
+          "&cimage=" +
+          containerImage;
+        console.log(url);
+
+        myHTTP.open("GET", url, false);
+        myHTTP.send();
+        console.log(myHTTP.responseText);
+        document.getElementById("outputBox").innerHTML = myHTTP.responseText;
+      }
+
       function deleteContainer() {
         const myHTTP = new XMLHttpRequest();
         const containerName = document.getElementById(
@@ -50,6 +69,21 @@
         console.log(myHTTP.responseText);
         document.getElementById("outputBox").innerHTML = myHTTP.responseText;
       }
+
+      
+      function deleteImage() {
+        const myHTTP = new XMLHttpRequest();
+        const imageName = document.getElementById("deleteImageName").value;
+        console.log(imageName);
+        const url = "http://localhost:3000/deleteimage?iname=" + imageName;
+        console.log(url);
+
+        myHTTP.open("GET", url, false);
+        myHTTP.send();
+        console.log(myHTTP.responseText);
+        document.getElementById("outputBox").innerHTML = myHTTP.responseText;
+      }
+
     </script>  
     <style>
     #base{
@@ -106,12 +140,12 @@
       </div>
       <div id="backBlock">
         <div id="formArea" class="ioBox">
-          <form id="createContainer" action="/run">
+           <div id="createContainerSection">
             <div>Create Container</div>
-            <div>Name: <input name="cname" /></div>
+            <div>Name: <input name="cname" id="cname" /></div>
             <div>
               Image:
-              <select name="cimage" id="">
+              <select name="cimage" id="cimage">
                 <option value="centos">CentOs</option>
                 <option value="ubuntu">Ubuntu</option>
                 <option value="amazonlinux">Amazonlinux</option>
@@ -119,21 +153,27 @@
                 <option value="oraclelinux">Oraclelinux</option>
               </select>
             </div>
-            <button id="createContainerButton">Create</button>
-          </form>
+            <button id="createContainerButton" onclick="createContainer()">
+              Create
+            </button>
+          </div>
           
            <div id="listContainerSection">
             <div>List All Container</div>
-            <button id="listContainerButton" onclick="listContainer()">Create</button>
+            <button id="listContainerButton" onclick="listContainer()">List</button>
            </div>
           
           <div id="deleteContainerSection">
             <div>Delete Container</div>
+
             <div>Name: <input name="dname" id="deleteConatainerName" /></div>
             <button id="deleteContainerButton" onclick="deleteContainer()">
               Create
             </button>
           </div>
+
+          
+
                                                        
         <div id="createDockerImageSection">
           <div>Create Image using Dockerfile</div>
@@ -146,6 +186,14 @@
         <div id="listImagesSection">
           <div>List All Images</div>
           <button id="listImagesButton" onclick="listImages()">List All Images</button>
+        </div>
+        
+        <div id="deleteImageSection">
+          <div>Delete Image</div>
+          <div>Name: <input name="iname" id="deleteImageName" /></div>
+          <button id="deleteImageButton" onclick="deleteImage()">
+            Delete
+          </button>
         </div>
                        
         </div>

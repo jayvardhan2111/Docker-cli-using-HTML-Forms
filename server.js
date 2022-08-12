@@ -33,6 +33,18 @@ app.get('/listcontainer',(req,res)=>{
 
 })
 
+app.get('/deleteimage',(req,res)=>{
+
+    var iname = req.query.iname
+    q = "sudo docker image rm -f  "+iname
+    exec(q,(err,stdout,stderr)=>{
+        console.log(err)
+        console.log(stderr)
+         res.send("<pre> Deleted "+stdout+"</pre>")
+    })
+
+})
+
 app.get("/listimages", (req, res) => {
   q = "docker images";
   exec(q, (err, stdout, stderr) => {
@@ -42,6 +54,18 @@ app.get("/listimages", (req, res) => {
   });
 });
 
+
+app.get('/deleteimage',(req,res)=>{
+
+    var iname = req.query.iname
+    q = "sudo docker image rm -f  "+iname
+    exec(q,(err,stdout,stderr)=>{
+        console.log(err)
+        console.log(stderr)
+         res.send("<pre> Deleted "+stdout+"</pre>")
+    })
+
+})
 
 app.get('/deletecontainer',(req,res)=>{
 
@@ -54,17 +78,5 @@ app.get('/deletecontainer',(req,res)=>{
     })
 
 })
-
-
-app.get('/ps',(req,res) => {
-
-        
-        exec("docker ps ",(err,stdout,stderr) => {
-                res.send("<pre>"+stdout+"</pre>")
-        
-        })
-})
-
-
 
 app.listen(3000,()=>{console.log('web app is running')})
