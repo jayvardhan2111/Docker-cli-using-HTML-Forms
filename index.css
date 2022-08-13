@@ -1,5 +1,12 @@
+
+body {
+background: url("resources/background.jpg");
+background-position: -650px -250px;
+
+}
+
 #base {
-    background: url("resources/background.jpg");
+   
     background-size: 125%;
     background-position: -400px 0px;
   }
