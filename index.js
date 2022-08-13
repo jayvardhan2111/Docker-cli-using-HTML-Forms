@@ -1,6 +1,9 @@
+
+const host = ""     // enter domain or ip of the instance
+
 function listContainer() {
   const myHTTP = new XMLHttpRequest();
-  const url = "http://localhost:3000/listcontainer";
+  const url = "http://"+host+":3000/listcontainer";
   myHTTP.open("GET", url, false);
   myHTTP.send();
   document.getElementById("outputBox").innerHTML = myHTTP.responseText;
@@ -20,7 +23,7 @@ function createImage() {
   }
   listOfDockerfileLines = fileContent.split("\n");
   const url =
-    "http://localhost:3000/createimage?imagename=" +
+    "http://"+host+":3000/createimage?imagename=" +
     imageName +
     "&dockerfilecontent=" +
     listOfDockerfileLines;
@@ -31,7 +34,7 @@ function createImage() {
 
 function listImages() {
   const myHTTP = new XMLHttpRequest();
-  const url = "http://localhost:3000/listimages";
+  const url = "http://"+host+":3000/listimages";
   myHTTP.open("GET", url, false);
   myHTTP.send();
   console.log(myHTTP.responseText);
@@ -53,7 +56,7 @@ function createContainer() {
   }
   console.log(containerImage);
   const url =
-    "http://localhost:3000/run?cname=" +
+    "http://"+host+":3000/run?cname=" +
     containerName +
     "&cimage=" +
     containerImage;
@@ -73,7 +76,7 @@ function deleteContainer() {
     return;
   }
   console.log(containerName);
-  const url = "http://localhost:3000/deletecontainer?dname=" + containerName;
+  const url = "http://"+host+":3000/deletecontainer?dname=" + containerName;
   console.log(url);
 
   myHTTP.open("GET", url, false);
@@ -90,7 +93,7 @@ function deleteImage() {
     return;
   }
   console.log(imageName);
-  const url = "http://localhost:3000/deleteimage?iname=" + imageName;
+  const url = "http://"+host+":3000/deleteimage?iname=" + imageName;
   console.log(url);
 
   myHTTP.open("GET", url, false);
