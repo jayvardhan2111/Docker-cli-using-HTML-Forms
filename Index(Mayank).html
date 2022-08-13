@@ -1,0 +1,127 @@
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="index.css" />
+    <script type="text/javascript" src="index.js"></script>
+  </head>
+  <body>
+    <div id="base">
+      <div id="header">
+        <div id="heading"><b>Docker Container Management</b></div>
+      </div>
+      <div id="backBlock">
+        <div id="formArea" class="ioBox">
+          <div id="optionButtons">
+            <div id="containerButton" onclick="displayContainer()">
+              Container
+            </div>
+            <div id="imageButton" onclick="displayImage()">Image</div>
+          </div>
+          <div id="selectedForms">
+            <form
+              id="createContainer"
+              class="container"
+              onsubmit="return false"
+            >
+              <div><h2>Create Container:</h2></div>
+              <div>
+                Name:
+                <input
+                  type="text"
+                  name=" cname"
+                  id="cname"
+                  placeholder="Enter Container Name"
+                />
+              </div>
+              <div>
+                Image:
+                <select name="cimage" id="cimage">
+                  <option value="centos">CentOs</option>
+                  <option value="ubuntu">Ubuntu</option>
+                  <option value="amazonlinux">Amazonlinux</option>
+                  <option value="archlinux">Archlinux</option>
+                  <option value="oraclelinux">Oraclelinux</option>
+                </select>
+              </div><br>
+              <button
+                type="submit"
+                id="createContainerButton"
+                onclick="createContainer()"
+              >
+                Create
+              </button>
+            </form>
+            <form id="listContainer" class="container" onsubmit="return false">
+              <div><h2>List All Container:</h2></div>
+              <button
+                type="submit"
+                id="listContainerButton"
+                onclick="listContainer()"
+              >
+                List All Container
+              </button>
+            </form>
+            <form
+              id="deleteContainer"
+              class="container"
+              onsubmit="return false"
+            >
+              <div><h2>Delete Container:</h2></div>
+              <div>
+                Name:
+                <input
+                  type="text"
+                  name="dname"
+                  id="deleteConatainerName"
+                  placeholder="Enter Container Name"
+                /><br>
+                <button
+                  type="submit"
+                  id="deleteContainerButton"
+                  onclick="deleteContainer()"
+                >
+                  Delete
+                </button>
+              </div>
+            </form>
+            <form id="createImage" class="image" onsubmit="return false">
+              <div><h2>Create Image Using Docker File</h2></div>
+              <div>
+                Name of Image:
+                <input type="text" placeholder="Enter Image Name" id="imageNameInput" name="imagename" />
+              </div>
+              <div>DockerFile Content:</div><br>
+              <textarea
+                placeholder="Enter Docker File Commands..."
+                id="fileContentInput"
+                name="dockerfilecontent"></textarea>
+              <button
+                type="submit"
+                id="createImageButton"
+                onclick="createImage()"
+              >
+                Create
+              </button>
+            </form>
+            <form id="listImage" class="image" onsubmit="return false">
+              <button type="submit" id="listImageButton" onclick="listImages()">
+                List All Images
+              </button>
+            </form>
+            <form id="deleteImage" class="image" onsubmit="return false">
+              <div><h2>Delete Image:</h2></div>
+              <div>Name: <input placeholder="Enter Image Name" name="iname" id="deleteImageName" /></div>
+              <button
+                type="submit"
+                id="deleteImageButton"
+                onclick="deleteImage()"
+              >
+                Delete
+              </button>
+            </form>
+          </div>
+        </div>
+        <div id="outputBox" class="ioBox"></div>
+      </div>
+    </div>
+  </body>
+</html>
