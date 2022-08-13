@@ -1,11 +1,11 @@
 #base {
-  background: url("background.jpg");
+  background: url("resources/background.jpg");
   background-size: 125%;
   background-position: -400px 0px;
 }
 @font-face {
   font-family: "Arista"; /*a name to be used later*/
-  src: url("Arista-Pro-Alternate-Regular.ttf"); /*URL to font*/
+  src: url("resources/Arista-Pro-Alternate-Regular.ttf"); /*URL to font*/
 }
 #header {
   font-family: "Arista";
